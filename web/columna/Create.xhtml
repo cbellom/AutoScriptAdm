@@ -15,12 +15,12 @@
             </h:panelGroup>
             <h:form styleClass="smart-green">
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateColumnaLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{columnaController.selected.id}" title="#{bundle.CreateColumnaTitle_id}" required="true" requiredMessage="#{bundle.CreateColumnaRequiredMessage_id}"/>
                     <h:outputLabel value="#{bundle.CreateColumnaLabel_nombre}" for="nombre" />
                     <h:inputText id="nombre" value="#{columnaController.selected.nombre}" title="#{bundle.CreateColumnaTitle_nombre}" />
                     <h:outputLabel value="#{bundle.CreateColumnaLabel_tipo}" for="tipo" />
                     <h:inputText id="tipo" value="#{columnaController.selected.tipo}" title="#{bundle.CreateColumnaTitle_tipo}" />
+                    <h:outputLabel value="#{bundle.CreateColumnaLabel_requerido}" for="requerido" />
+                    <h:selectBooleanCheckbox id="requerido" value="#{columnaController.selected.requerido}" title="#{bundle.CreateColumnaTitle_requerido}" />
                     <h:outputLabel value="#{bundle.CreateColumnaLabel_tablaId}" for="tablaId" />
                     <h:selectOneMenu id="tablaId" value="#{columnaController.selected.tablaId}" title="#{bundle.CreateColumnaTitle_tablaId}" >
                         <f:selectItems value="#{tablaController.itemsAvailableSelectOne}"/>

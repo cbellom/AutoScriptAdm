@@ -44,6 +44,8 @@ public class Columna implements Serializable {
     @Size(max = 255)
     @Column(name = "TIPO")
     private String tipo;
+    @Column(name = "REQUERIDO" )
+    private boolean requerido;
     @JoinColumn(name = "TABLA_ID", referencedColumnName = "ID")
     @ManyToOne
     private Tabla tablaId;
@@ -85,6 +87,14 @@ public class Columna implements Serializable {
 
     public void setTablaId(Tabla tablaId) {
         this.tablaId = tablaId;
+    }
+
+    public boolean isRequerido() {
+        return requerido;
+    }
+
+    public void setRequerido(boolean requerido) {
+        this.requerido = requerido;
     }
 
     @Override

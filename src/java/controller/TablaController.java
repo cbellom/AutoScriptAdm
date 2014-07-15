@@ -5,6 +5,7 @@ import controller.util.JsfUtil;
 import controller.util.PaginationHelper;
 import entity.Columna;
 import facade.TablaFacade;
+import helper.ScriptHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -32,6 +33,7 @@ public class TablaController implements Serializable {
     private facade.TablaFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private ScriptHelper scriptHelper = new ScriptHelper();
 
     public TablaController() {
     }
@@ -234,40 +236,56 @@ public class TablaController implements Serializable {
         }
     }
 
-    public void generarCreateFile() {
+    public void generateCreateFile() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
         String fileName = current.getName()+".sql";
         response.setContentType("text/plain");
         response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
         PrintWriter os = null;
-        String cadena = "Hola Mundo!";
-        String encabezado = "--\n"
-                + "-- #VERSION:0000001000\n"
-                + "--\n"
-                + "-- HISTORIAL DE CAMBIOS\n"
-                + "--\n"
-                + "-- Versión     GAP           Solicitud        Fecha        Realizó        Descripción\n"
-                + "-- =========== ============= ================ ============ ============== ==============================================================================\n"
-                + "-- 1000        XXXXX         XXXXXXXXX        XX/XX/XXXX                  . Se crea tabla " + current.getName() + "\n"
-                + "-- =========== ============= ================ ============ ============== ==============================================================================\n"
-                + "--\n"
-                + "Prompt\n"
-                + "Prompt Creando tabla " + current.getName() + "\n"
-                + "Promp\n"
-                + "--";
-        String query = "--\n"
-                + "create table " + current.getName() + "(\n";
-        for (Columna c : current.getColumnaCollection()) {
-            query += c.getNombre() + " " + c.getTipo() + ",\n";
+        
+        String encabezado = scriptHelper.scriptVersion("Se crea la tabla "+current.getName());
+        String query = scriptHelper.scriptCreateTable(current);
+        try {
+            os = response.getWriter();
+            os.println(encabezado + query);
+            os.flush();
+            os.close();
+            FacesContext.getCurrentInstance().responseComplete();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        query += ")\n"
-                +"tablespace ts_dsfi\n"
-                + "logging\n"
-                + "nocompress\n"
-                + "nocache\n"
-                + "noparallel\n"
-                + "monitoring;";
+    }
+    
+    public void generateTypeFile() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
+        String fileName = current.getName()+".sql";
+        response.setContentType("text/plain");
+        response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
+        PrintWriter os = null;
+        
+        String query = scriptHelper.scriptTypeTable(current);
+        try {
+            os = response.getWriter();
+            os.println(query);
+            os.flush();
+            os.close();
+            FacesContext.getCurrentInstance().responseComplete();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void generateCrudFile() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
+        String fileName = current.getName()+"_type.sql";
+        response.setContentType("text/plain");
+        response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
+        PrintWriter os = null;        
+        String encabezado = scriptHelper.scriptVersion("Se crea la tabla "+current.getName());
+        String query = scriptHelper.scriptCreateTable(current);
         try {
             os = response.getWriter();
             os.println(encabezado + query);

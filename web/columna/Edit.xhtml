@@ -21,6 +21,8 @@
                     <h:inputText id="nombre" value="#{columnaController.selected.nombre}" title="#{bundle.EditColumnaTitle_nombre}" />
                     <h:outputLabel value="#{bundle.EditColumnaLabel_tipo}" for="tipo" />
                     <h:inputText id="tipo" value="#{columnaController.selected.tipo}" title="#{bundle.EditColumnaTitle_tipo}" />
+                    <h:outputLabel value="#{bundle.CreateColumnaLabel_requerido}" for="requerido" />
+                    <h:selectBooleanCheckbox id="requerido" value="#{columnaController.selected.requerido}" title="#{bundle.CreateColumnaTitle_requerido}" />
                     <h:outputLabel value="#{bundle.EditColumnaLabel_tablaId}" for="tablaId" />
                     <h:selectOneMenu id="tablaId" value="#{columnaController.selected.tablaId}" title="#{bundle.EditColumnaTitle_tablaId}" >
                         <f:selectItems value="#{tablaController.itemsAvailableSelectOne}"/>
