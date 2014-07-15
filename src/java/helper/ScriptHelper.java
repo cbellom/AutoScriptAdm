@@ -22,12 +22,12 @@ public class ScriptHelper {
                 + "Promp\n"
                 + "--";
         query = "--\n"
-                + "create table " + tabla.getName() + "(\n";
+                + "create table " + tabla.getName() + "(";
         for (Columna c : tabla.getColumnaCollection()) {
             if (c.isRequerido()) {
-                query += c.getNombre() + "\t\t" + c.getTipo() + "\t\t nn_" + tabla.getName() + "_" + c.getNombre().substring(c.getNombre().indexOf("_") + 1) + " not null,\n";
+                query += "\n"+c.getNombre() + " " + c.getTipo() + " nn_" + tabla.getName() + "_" + c.getNombre().substring(c.getNombre().indexOf("_") + 1) + " not null,";
             } else {
-                query += c.getNombre() + "\t\t " + c.getTipo() + ",\n";
+                query += "\n"+c.getNombre() + " " + c.getTipo() + ",";
             }
         }
         query = quitarUltimaComa(query);
@@ -61,14 +61,13 @@ public class ScriptHelper {
                 + "Promp\n"
                 + "--";
         query = "--\n"
-                + "type ty_" + tabla.getName() + " is record (\n";
+                + "type ty_" + tabla.getName() + " is record (";
         for (Columna c : tabla.getColumnaCollection()) {
-            query += c.getNombre() + "\t\t" + tabla.getName() + "." + c.getTipo() + "%type,\n";
+            query += "\n"+c.getNombre() + " " + tabla.getName() + "." + c.getNombre()+ "%type,";
         }
-        if (query.charAt(query.length() - 1) == ',') {
-            query = query.substring(0, query.length() - 2);
-        }
-        return query + ";";
+        query = quitarUltimaComa(query);
+        query += ");";
+        return query;
     }
 
     public String scriptCrudTable(Tabla tabla) {
@@ -97,6 +96,7 @@ public class ScriptHelper {
                 + "                             )is\n"
                 + "  begin\n"
                 + scriptInsertTable(tabla)
+                + "\n"
                 + "   p_ty_erro.cod_error := 'OK';\n"
                 + "   p_ty_erro.msg_error := 'Inserción exitosa';\n"
                 + "   --\n"
@@ -111,6 +111,7 @@ public class ScriptHelper {
                 + "                             )is\n"
                 + "  begin\n"
                 + scriptUpdateTable(tabla)
+                + "\n"
                 + "    p_ty_erro.cod_error := 'OK';\n"
                 + "    p_ty_erro.msg_error := 'Actualización exitosa';\n"
                 + "   --\n"
@@ -125,6 +126,7 @@ public class ScriptHelper {
                 + "                             )is\n"
                 + "  begin\n"
                 + scriptDeleteTable(tabla)
+                + "\n"
                 + "   p_ty_erro.cod_error := 'OK';\n"
                 + "   p_ty_erro.msg_error := 'Eliminación exitosa';\n"
                 + "   --\n"
@@ -150,20 +152,20 @@ public class ScriptHelper {
                 + "values\n"
                 + "( ";
         for (Columna c : tabla.getColumnaCollection()) {
-            script += "p_ty_" + tabla.getName() + "." + c.getNombre() + ",\n";
+            script += "\np_ty_" + tabla.getName() + "." + c.getNombre() + ",";
         }
         script = quitarUltimaComa(script);
-        script = ");";
+        script += ");";
         return script;
     }
 
     public String scriptUpdateTable(Tabla tabla) {
-        String script = "update " + tabla.getName() + " set\n";
+        String script = "update " + tabla.getName() + " \nset";
         for (Columna c : tabla.getColumnaCollection()) {
-            script += c.getNombre() + " = " + "p_ty_" + tabla.getName() + "." + c.getNombre() + ",\n";
+            script += "\n"+c.getNombre() + " = " + "p_ty_" + tabla.getName() + "." + c.getNombre() + ",";
         }
         script = quitarUltimaComa(script);
-        script += "where \n"
+        script += "\nwhere \n"
                 + "llave = p_ty_" + tabla.getName() + ".llave;";
         return script;
     }
@@ -175,8 +177,9 @@ public class ScriptHelper {
     }
 
     public String quitarUltimaComa(String query) {
-        if (query.charAt(query.length() - 1) == ',') {
-            query = query.substring(0, query.length() - 2);
+        System.out.println("hola :D "+query.charAt(query.length() - 1));
+        if (query.charAt(query.length() - 1) == ',') {            
+            query = query.substring(0, query.length() - 1);
         }
         return query;
     }

@@ -260,7 +260,7 @@ public class TablaController implements Serializable {
     public void generateTypeFile() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
-        String fileName = current.getName()+".sql";
+        String fileName = current.getName()+"_type.sql";
         response.setContentType("text/plain");
         response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
         PrintWriter os = null;
@@ -280,7 +280,7 @@ public class TablaController implements Serializable {
     public void generateCrudFile() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
-        String fileName = current.getName()+"_type.sql";
+        String fileName = current.getName()+"_crud.sql";
         response.setContentType("text/plain");
         response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
         PrintWriter os = null;        
