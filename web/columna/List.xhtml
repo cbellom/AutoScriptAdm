@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListColumnaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="smart-green">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListColumnaEmpty}" rendered="#{columnaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{columnaController.items.rowCount > 0}">
+                    <h:outputText value="#{columnaController.pagination.pageFirstItem + 1}..#{columnaController.pagination.pageLastItem + 1}/#{columnaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{columnaController.previous}" value="#{bundle.Previous} #{columnaController.pagination.pageSize}" rendered="#{columnaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{columnaController.next}" value="#{bundle.Next} #{columnaController.pagination.pageSize}" rendered="#{columnaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{columnaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" styleClass="table" rules="all">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListColumnaTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListColumnaTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListColumnaTitle_tipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListColumnaTitle_tablaId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tablaId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{columnaController.prepareView}" value="#{bundle.ListColumnaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{columnaController.prepareEdit}" value="#{bundle.ListColumnaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{columnaController.destroy}" value="#{bundle.ListColumnaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{columnaController.prepareCreate}" value="#{bundle.ListColumnaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListColumnaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

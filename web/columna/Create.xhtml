@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateColumnaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form styleClass="smart-green">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateColumnaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{columnaController.selected.id}" title="#{bundle.CreateColumnaTitle_id}" required="true" requiredMessage="#{bundle.CreateColumnaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateColumnaLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{columnaController.selected.nombre}" title="#{bundle.CreateColumnaTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateColumnaLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{columnaController.selected.tipo}" title="#{bundle.CreateColumnaTitle_tipo}" />
+                    <h:outputLabel value="#{bundle.CreateColumnaLabel_tablaId}" for="tablaId" />
+                    <h:selectOneMenu id="tablaId" value="#{columnaController.selected.tablaId}" title="#{bundle.CreateColumnaTitle_tablaId}" >
+                        <f:selectItems value="#{tablaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{columnaController.create}" value="#{bundle.CreateColumnaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{columnaController.prepareList}" value="#{bundle.CreateColumnaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateColumnaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

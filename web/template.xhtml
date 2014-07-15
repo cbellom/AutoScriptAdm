@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <!-- Bootstrap -->
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <h:outputStylesheet name="css/font-awesome.min.css"/>
+        <h:outputStylesheet name="css/templatemo_style.css"/>
+        <h:outputStylesheet name="css/formGreen.css"/>
+        <h:outputStylesheet name="css/circle.css"/>
+        <h:outputStylesheet name="css/jquery.bxslider.css"/>
+        <h:outputStylesheet name="css/nivo-slider.css"/>
+        <h:outputStylesheet name="css/table.css"/>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,600' rel='stylesheet' type='text/css'/>
+        <script src="js/modernizr.custom.js"/>
+        <!--<h:outputStylesheet name="css/jsfcrud.css"/>-->
+    </h:head>
+
+    <h:body>
+        <div id="templatemo_top" class="mainTop">
+            <div class="container">
+                <div class="row">
+                    <div class="hidden-xs hidden-sm col-md-6">
+                        <div class="mailme">
+                            <a href="mailto:info@company.com"><i class="fa fa-envelope"></i>info@company.com</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="socials">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-twitter soc"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook soc"></i></a></li>
+                                <li><a href="#"><i class="fa fa-rss soc"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble soc"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram soc"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="mWrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <div class="logo">
+                            <!--              <a href="#"><img src="/images/logo.png" alt="Powerful Theme"></a>-->
+                            <h1 class="text-center"><ui:insert name="title">Default Title</ui:insert></h1>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-md-8">
+                        <nav class="mainMenu">
+                            <ul class="nav">
+                                <li><a href="#templatemo_top">Home</a></li>
+                                <li><a href="#templatemo_services">Services</a></li>
+                                <li><a href="#templatemo_portfolio">Portfolio</a></li>
+                                <li><a href="#templatemo_about">About</a></li>
+                                <li><a href="#templatemo_contact">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="templatemo_services" >
+            <div class="container">
+                <div class="row">                    
+                    <p>
+                        <ui:insert name="body">Default Body</ui:insert>
+                    </p>
+                </div>
+            </div>
+        </div> <!-- e/o section1 -->
+
+    </h:body>
+
+</html>

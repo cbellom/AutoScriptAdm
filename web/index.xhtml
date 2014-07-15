@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Inicio"/>
+        </ui:define>
+        <ui:define name="body">
+            <div class="col-xs-6 col-sm-6 col-md-3" >
+                <div class="blok text-center">
+                    <div class="hexagon-a">
+                        <a class="hlinktop">
+                            <h:link outcome="/tabla/List">
+                                <div class="hexa-a">
+                                    <div class="hcontainer-a">
+                                        <div class="vertical-align-a">
+                                            <span class="texts-a"><i class="fa fa-table"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:link>
+                        </a>
+                    </div>  
+                    <div class="hexagon">
+                        <a class="hlinkbott" href="#">
+                            <div class="hexa">
+                                <div class="hcontainer">
+                                    <div class="vertical-align">
+                                        <span class="texts"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <h4>Tablas</h4>
+                    <p><small>Descripción.</small></p>
+                    <br />
+                    <!--<h:link outcome="/keyword/List" value="Show All Keyword Items"/>-->
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3">
+                <div class="blok text-center">
+                    <div class="hexagon-a">
+                        <a class="hlinktop" href="#">
+                            <h:link outcome="/columna/List" >
+                                <div class="hexa-a">
+                                    <div class="hcontainer-a">
+                                        <div class="vertical-align-a">
+                                            <span class="texts-a"><i class="fa fa-columns"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:link>
+                        </a>
+                    </div>  
+                    <div class="hexagon">
+                        <a class="hlinkbott" href="#">
+                            <div class="hexa">
+                                <div class="hcontainer">
+                                    <div class="vertical-align">
+                                        <span class="texts"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <h4>Columnas</h4>
+                    <p><small>Descripción.</small></p>
+                    <br />
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3">
+                <div class="blok text-center">
+                    <div class="hexagon-a">
+                        <a class="hlinktop" href="#">
+                            <h:link outcome="/columna/List" >
+                                <div class="hexa-a">
+                                    <div class="hcontainer-a">
+                                        <div class="vertical-align-a">
+                                            <span class="texts-a"><i class="fa fa-columns"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:link>
+                        </a>
+                    </div>  
+                    <div class="hexagon">
+                        <a class="hlinkbott" href="#">
+                            <div class="hexa">
+                                <div class="hcontainer">
+                                    <div class="vertical-align">
+                                        <span class="texts"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <h4>Script</h4>
+                    <p><small>Descripción.</small></p>
+                    <br />
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
