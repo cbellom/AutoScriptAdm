@@ -284,8 +284,8 @@ public class TablaController implements Serializable {
         response.setContentType("text/plain");
         response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
         PrintWriter os = null;        
-        String encabezado = scriptHelper.scriptVersion("Se crea la tabla "+current.getName());
-        String query = scriptHelper.scriptCreateTable(current);
+        String encabezado = scriptHelper.scriptVersion("Se crean procedimientos CRUD para la tabla "+current.getName());
+        String query = scriptHelper.scriptCrudTable(current);
         try {
             os = response.getWriter();
             os.println(encabezado + query);
