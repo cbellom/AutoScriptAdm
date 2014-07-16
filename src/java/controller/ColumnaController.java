@@ -3,7 +3,9 @@ package controller;
 import entity.Columna;
 import controller.util.JsfUtil;
 import controller.util.PaginationHelper;
+import entity.Tabla;
 import facade.ColumnaFacade;
+import facade.TablaFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -26,6 +28,8 @@ public class ColumnaController implements Serializable {
     private DataModel items = null;
     @EJB
     private facade.ColumnaFacade ejbFacade;
+    @EJB
+    private facade.TablaFacade tablaEjbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -65,7 +69,10 @@ public class ColumnaController implements Serializable {
         recreateModel();
         return "List";
     }
-
+    public String prepareListFromIndex() {
+        recreateModel();
+        return "columna/List";
+    }
     public String prepareView() {
         current = (Columna) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -81,9 +88,17 @@ public class ColumnaController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
+//            Tabla tabla = buscarTablaId(current.getTablaId().getId());
+//            if(tabla==null){
+//                JsfUtil.addErrorMessage("No se encontro la tabla "+current.getTablaId().getId());
+//                return null;
+//            }
+//            tabla.getColumnaCollection().add(current);
+//            tablaEjbFacade.edit(tabla);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("properties/Bundle").getString("ColumnaCreated"));
             return prepareCreate();
         } catch (Exception e) {
+            e.printStackTrace();
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("properties/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
@@ -228,5 +243,10 @@ public class ColumnaController implements Serializable {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Columna.class.getName());
             }
         }
+    }
+    
+    public Tabla buscarTablaId (java.lang.Integer id){
+        Tabla tabla = (Tabla) tablaEjbFacade.find(id);
+        return tabla;
     }
 }

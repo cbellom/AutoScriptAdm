@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -71,7 +72,12 @@ public class TablaController implements Serializable {
         recreateModel();
         return "List";
     }
-
+    
+    public String prepareListFromIndex() {
+        recreateModel();
+        return "tabla/List";
+    }
+    
     public String prepareView() {
         current = (Tabla) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -253,6 +259,7 @@ public class TablaController implements Serializable {
             os.close();
             FacesContext.getCurrentInstance().responseComplete();
         } catch (IOException e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("properties/Bundle").getString("FileErrorOccured"));
             e.printStackTrace();
         }
     }
@@ -273,6 +280,7 @@ public class TablaController implements Serializable {
             os.close();
             FacesContext.getCurrentInstance().responseComplete();
         } catch (IOException e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("properties/Bundle").getString("FileErrorOccured"));
             e.printStackTrace();
         }
     }
@@ -294,6 +302,12 @@ public class TablaController implements Serializable {
             FacesContext.getCurrentInstance().responseComplete();
         } catch (IOException e) {
             e.printStackTrace();
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("properties/Bundle").getString("FileErrorOccured"));
         }
+    }
+    
+    public Collection<Columna> buscarListaColumnaPorTabla (java.lang.Integer id){
+        return null;
+        
     }
 }

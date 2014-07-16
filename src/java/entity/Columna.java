@@ -46,6 +46,8 @@ public class Columna implements Serializable {
     private String tipo;
     @Column(name = "REQUERIDO" )
     private boolean requerido;
+    @Column(name = "LLAVEPRIMARIA" )
+    private boolean llavePrimaria;
     @JoinColumn(name = "TABLA_ID", referencedColumnName = "ID")
     @ManyToOne
     private Tabla tablaId;
@@ -95,6 +97,14 @@ public class Columna implements Serializable {
 
     public void setRequerido(boolean requerido) {
         this.requerido = requerido;
+    }
+
+    public boolean isLlavePrimaria() {
+        return llavePrimaria;
+    }
+
+    public void setLlavePrimaria(boolean llavePrimaria) {
+        this.llavePrimaria = llavePrimaria;
     }
 
     @Override

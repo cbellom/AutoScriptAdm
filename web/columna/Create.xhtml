@@ -21,6 +21,8 @@
                     <h:inputText id="tipo" value="#{columnaController.selected.tipo}" title="#{bundle.CreateColumnaTitle_tipo}" />
                     <h:outputLabel value="#{bundle.CreateColumnaLabel_requerido}" for="requerido" />
                     <h:selectBooleanCheckbox id="requerido" value="#{columnaController.selected.requerido}" title="#{bundle.CreateColumnaTitle_requerido}" />
+                    <h:outputLabel value="#{bundle.CreateColumnaLabel_llave}" for="llavePrimaria" />
+                    <h:selectBooleanCheckbox id="llavePrimaria" value="#{columnaController.selected.llavePrimaria}" title="#{bundle.CreateColumnaTitle_llave}" />
                     <h:outputLabel value="#{bundle.CreateColumnaLabel_tablaId}" for="tablaId" />
                     <h:selectOneMenu id="tablaId" value="#{columnaController.selected.tablaId}" title="#{bundle.CreateColumnaTitle_tablaId}" >
                         <f:selectItems value="#{tablaController.itemsAvailableSelectOne}"/>

@@ -10,43 +10,44 @@
             <h:outputText value="Inicio"/>
         </ui:define>
         <ui:define name="body">
-            <div class="col-xs-6 col-sm-6 col-md-3" >
-                <div class="blok text-center">
-                    <div class="hexagon-a">
-                        <a class="hlinktop">
-                            <h:link outcome="/tabla/List">
-                                <div class="hexa-a">
-                                    <div class="hcontainer-a">
-                                        <div class="vertical-align-a">
-                                            <span class="texts-a"><i class="fa fa-table"></i></span>
+            <h:form >
+                <div class="col-xs-6 col-sm-6 col-md-3" >
+                    <div class="blok text-center">
+                        <div class="hexagon-a">
+                            <a class="hlinktop">
+                                <h:commandLink action="#{tablaController.prepareListFromIndex()}" immediate="true">
+                                    <div class="hexa-a">
+                                        <div class="hcontainer-a">
+                                            <div class="vertical-align-a">
+                                                <span class="texts-a"><i class="fa fa-table"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </h:commandLink>
+                            </a>
+                        </div>  
+                        <div class="hexagon">
+                            <a class="hlinkbott" href="#">
+                                <div class="hexa">
+                                    <div class="hcontainer">
+                                        <div class="vertical-align">
+                                            <span class="texts"></span>
                                         </div>
                                     </div>
                                 </div>
-                            </h:link>
-                        </a>
-                    </div>  
-                    <div class="hexagon">
-                        <a class="hlinkbott" href="#">
-                            <div class="hexa">
-                                <div class="hcontainer">
-                                    <div class="vertical-align">
-                                        <span class="texts"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+                        <h4>Tablas</h4>
+                        <p><small>Descripción.</small></p>
+                        <br />
+                        <!--<h:link outcome="/keyword/List" value="Show All Keyword Items"/>-->
                     </div>
-                    <h4>Tablas</h4>
-                    <p><small>Descripción.</small></p>
-                    <br />
-                    <!--<h:link outcome="/keyword/List" value="Show All Keyword Items"/>-->
                 </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-3">
-                <div class="blok text-center">
-                    <div class="hexagon-a">
-                        <a class="hlinktop" href="#">
-                            <h:link outcome="/columna/List" >
+                <div class="col-xs-6 col-sm-6 col-md-3">
+                    <div class="blok text-center">
+                        <div class="hexagon-a">
+                            <a class="hlinktop" href="#">
+                                <h:commandLink action="#{columnaController.prepareListFromIndex()}" immediate="true">
                                 <div class="hexa-a">
                                     <div class="hcontainer-a">
                                         <div class="vertical-align-a">
@@ -54,25 +55,26 @@
                                         </div>
                                     </div>
                                 </div>
-                            </h:link>
-                        </a>
-                    </div>  
-                    <div class="hexagon">
-                        <a class="hlinkbott" href="#">
-                            <div class="hexa">
-                                <div class="hcontainer">
-                                    <div class="vertical-align">
-                                        <span class="texts"></span>
+                                            </h:commandLink>
+                            </a>
+                        </div>  
+                        <div class="hexagon">
+                            <a class="hlinkbott" href="#">
+                                <div class="hexa">
+                                    <div class="hcontainer">
+                                        <div class="vertical-align">
+                                            <span class="texts"></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+                        <h4>Columnas</h4>
+                        <p><small>Descripción.</small></p>
+                        <br />
                     </div>
-                    <h4>Columnas</h4>
-                    <p><small>Descripción.</small></p>
-                    <br />
                 </div>
-            </div>
+            </h:form>
         </ui:define>
     </ui:composition>
 

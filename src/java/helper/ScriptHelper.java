@@ -161,18 +161,42 @@ public class ScriptHelper {
 
     public String scriptUpdateTable(Tabla tabla) {
         String script = "update " + tabla.getName() + " \nset";
+        boolean primero = true;
         for (Columna c : tabla.getColumnaCollection()) {
             script += "\n"+c.getNombre() + " = " + "p_ty_" + tabla.getName() + "." + c.getNombre() + ",";
         }
         script = quitarUltimaComa(script);
-        script += "\nwhere \n"
-                + "llave = p_ty_" + tabla.getName() + ".llave;";
+        script += "\nwhere ";
+        for (Columna c : tabla.getColumnaCollection()) {
+            if(c.isLlavePrimaria()){
+                if(primero){
+                    script += "\n"+c.getNombre() +" = p_ty_" + tabla.getName() +"."+c.getNombre();
+                    primero = false;
+                }else{
+                    script += "\nand "+c.getNombre() +" = p_ty_" + tabla.getName() +"."+c.getNombre();
+                }
+            }
+            
+        }
+        script += "\n;";
         return script;
     }
 
     public String scriptDeleteTable(Tabla tabla) {
-        String script = "delete " + tabla.getName() + " \n"
-                + "where  llave  = p_ty_" + tabla.getName() + ".llave;";
+        boolean primero = true;
+        String script = "delete " + tabla.getName() + " \n";
+        script += "\nwhere ";
+        for (Columna c : tabla.getColumnaCollection()) {
+            if(c.isLlavePrimaria()){
+                if(primero){
+                    script += "\n"+c.getNombre() +" = p_ty_" + tabla.getName() +"."+c.getNombre();
+                    primero = false;
+                }else{
+                    script += "\nand "+c.getNombre() +" = p_ty_" + tabla.getName() +"."+c.getNombre();
+                }
+            }            
+        }
+        script += "\n;";
         return "";
     }
 
