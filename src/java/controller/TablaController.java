@@ -32,6 +32,8 @@ public class TablaController implements Serializable {
     private DataModel items = null;
     @EJB
     private facade.TablaFacade ejbFacade;
+    @EJB
+    private facade.ColumnaFacade columnaEjbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private ScriptHelper scriptHelper = new ScriptHelper();
@@ -250,6 +252,11 @@ public class TablaController implements Serializable {
         response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
         PrintWriter os = null;
         
+        Collection<Columna> columnas = columnaEjbFacade.buscarTodosPorTabla(current.getId());
+        if(columnas!=null){
+            current.setColumnaCollection(columnas);
+        }
+                
         String encabezado = scriptHelper.scriptVersion("Se crea la tabla "+current.getName());
         String query = scriptHelper.scriptCreateTable(current);
         try {
@@ -271,7 +278,10 @@ public class TablaController implements Serializable {
         response.setContentType("text/plain");
         response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
         PrintWriter os = null;
-        
+        Collection<Columna> columnas = columnaEjbFacade.buscarTodosPorTabla(current.getId());
+        if(columnas!=null){
+            current.setColumnaCollection(columnas);
+        }
         String query = scriptHelper.scriptTypeTable(current);
         try {
             os = response.getWriter();
@@ -291,7 +301,11 @@ public class TablaController implements Serializable {
         String fileName = current.getName()+"_crud.sql";
         response.setContentType("text/plain");
         response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
-        PrintWriter os = null;        
+        PrintWriter os = null; 
+        Collection<Columna> columnas = columnaEjbFacade.buscarTodosPorTabla(current.getId());
+        if(columnas!=null){
+            current.setColumnaCollection(columnas);
+        }
         String encabezado = scriptHelper.scriptVersion("Se crean procedimientos CRUD para la tabla "+current.getName());
         String query = scriptHelper.scriptCrudTable(current);
         try {

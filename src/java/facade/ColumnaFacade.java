@@ -5,6 +5,7 @@
 package facade;
 
 import entity.Columna;
+import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,4 +28,14 @@ public class ColumnaFacade extends AbstractFacade<Columna> {
         super(Columna.class);
     }
     
+    public Collection<Columna> buscarTodosPorTabla (java.lang.Integer id){
+        Collection<Columna> columnas =findAll();
+        for(Columna c:columnas){
+            if(c.getTablaId().getId()!=id){
+                columnas.remove(c);
+            }
+        }
+        return columnas;
+        
+    }    
 }
