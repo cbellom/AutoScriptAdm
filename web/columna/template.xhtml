@@ -36,8 +36,8 @@
                             <ul class="nav">
                                 <h:form >
                                     <li><h:link outcome="/index">Inicio</h:link></li>
-                                    <li><h:commandLink action="#{tablaController.prepareListFromIndex()}" immediate="true">Tablas</h:commandLink></li>
-                                    <li><h:commandLink action="#{columnaController.prepareListFromIndex()}" immediate="true">Columnas</h:commandLink></li>
+                                    <li><h:link outcome="/tabla/List.xhtml">Tablas</h:link></li>
+                                    <li><h:commandLink action="#{columnaController.prepareList()}" immediate="true">Columnas</h:commandLink></li>
                                 </h:form>
                             </ul>
                         </nav>

@@ -73,6 +73,10 @@ public class ColumnaController implements Serializable {
         recreateModel();
         return "columna/List";
     }
+    public String prepareListFromTabla() {
+        recreateModel();
+        return "columna/List";
+    }
     public String prepareView() {
         current = (Columna) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
