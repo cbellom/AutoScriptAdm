@@ -16,6 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ColumnaFacade extends AbstractFacade<Columna> {
+
     @PersistenceContext(unitName = "AutoScriptPU")
     private EntityManager em;
 
@@ -27,15 +28,19 @@ public class ColumnaFacade extends AbstractFacade<Columna> {
     public ColumnaFacade() {
         super(Columna.class);
     }
-    
-    public Collection<Columna> buscarTodosPorTabla (java.lang.Integer id){
-        Collection<Columna> columnas =findAll();
-        for(Columna c:columnas){
-            if(c.getTablaId().getId()!=id){
-                columnas.remove(c);
+
+    public Collection<Columna> buscarTodosPorTabla(java.lang.Integer id) {
+        Collection<Columna> columnas = findAll();
+        try {
+            for (Columna c : columnas) {
+                if (c.getTablaId().getId() != id) {
+                    columnas.remove(c);
+                }
             }
+            return columnas;
+        } catch (Exception e) {
+            return null;
         }
-        return columnas;
-        
-    }    
+
+    }
 }

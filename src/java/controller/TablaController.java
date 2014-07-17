@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -38,7 +39,7 @@ public class TablaController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private ScriptHelper scriptHelper = new ScriptHelper();
-
+    private Collection<Columna> columnas;
     public TablaController() {
     }
 
@@ -84,6 +85,8 @@ public class TablaController implements Serializable {
     public String prepareView() {
         current = (Tabla) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        columnas = columnaEjbFacade.buscarTodosPorTabla(current.getId());
+        if(columnas!=null) columnas = new ArrayList<Columna>();
         return "View";
     }
 

@@ -13,6 +13,20 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
 }
+.smart-green-tabla {
+    width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+    background: #FFF;
+    padding: 30px 30px 20px 30px;
+    box-shadow: rgba(194, 194, 194, 0.7) 0 3px 10px -1px;
+    -webkit-box-shadow: rgba(194, 194, 194, 0.7) 0 3px 10px -1px;
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #666;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
 .smart-green h1 {
     font: 24px "Trebuchet MS", Arial, Helvetica, sans-serif;
     padding: 20px 0px 20px 40px;
@@ -72,7 +86,7 @@
     height:30px;
 }
 .smart-green .button {
-    background-color: #9DC45F;
+    background-color: #2aabd2;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-border-radius: 5px;
@@ -82,5 +96,5 @@
     text-shadow: 1px 1px 1px #949494;
 }
 .smart-green .button:hover {
-    background-color:#80A24A;
+    background-color:#99ccff;
 }
