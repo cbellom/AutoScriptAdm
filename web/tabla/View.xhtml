@@ -45,8 +45,8 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListColumnaEmpty}" rendered="#{columnaController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{columnaController.items.rowCount > 0}">
+                <h:outputText escape="false" value="#{bundle.ListColumnaEmpty}" rendered="#{tablaController.selected.columnaCollection.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tablaController.selected.columnaCollection.rowCount > 0}">
                     <h:dataTable value="#{tablaController.selected.columnaCollection}" var="item" border="0" cellpadding="2" cellspacing="0" styleClass="table" rules="all">
                         <h:column>
                             <f:facet name="header">

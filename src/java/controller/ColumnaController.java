@@ -248,9 +248,4 @@ public class ColumnaController implements Serializable {
             }
         }
     }
-    
-    public Tabla buscarTablaId (java.lang.Integer id){
-        Tabla tabla = (Tabla) tablaEjbFacade.find(id);
-        return tabla;
-    }
 }
